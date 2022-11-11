@@ -9,13 +9,13 @@ router.post("/", (req, res) => {
   let personalEmail = req.body.personalEmail;
   let password = req.body.password;
   let mobileNo = req.body.mobileNo;
-  let id=req.body.id;
-  let category=req.body.category;
   let image=req.body.image;  
+  let buildingId=req.body.buildingId;
 
   password = bcryptjs.hashSync(password, 10);
 
-  let sql = `INSERT INTO user(name,officialEmail,personalEmail,password,mobileNo,id,category,image) VALUES ('${name}','${officalEmail}','${personalEmail}','${password}','${mobileNo}','${id}','${category}','${image}')`;
+  let sql = `INSERT INTO user(name,officialEmail,personalEmail,password,
+mobileno ,image,buildingId) VALUES ('${name}','${officalEmail}','${personalEmail}','${password}',${mobileNo},'${image}',${buildingId})`;
 
   connection.query(sql);
   connection.end();

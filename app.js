@@ -14,7 +14,7 @@ const login=require('./routes/login');
 const building=require('./routes/building');
 const tank=require('./routes/tank');
 const check=require('./routes/check');
-  
+const sensor=require('./routes/sensor');
 
 app.get('/',(req,res)=>{
     res.send('Hello World');
@@ -25,6 +25,7 @@ app.use('/login',login);
 app.use('/building',building);
 app.use('/tank',tank);
 app.use('/check',check);
+app.use('/sensor',sensor);
 
 app.listen(3000,()=>{
     console.log("server is running on port 3000");

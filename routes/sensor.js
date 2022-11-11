@@ -5,7 +5,7 @@ router.post("/", (req, res) => {
     
     console.log('mujhe request agayi');
     console.log(req.body);
-    res.sendStatus(200);
+    res.send("Hello from Aditya!!");
 });
 
 module.exports = router;

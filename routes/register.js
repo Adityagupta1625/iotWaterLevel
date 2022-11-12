@@ -5,7 +5,7 @@ const connection=require('../config/db');
 
 router.post("/", (req, res) => {
   let name = req.body.name;
-  let officalEmail = req.body.officalEmail;
+  let officalEmail = req.body.officialEmail;
   let personalEmail = req.body.personalEmail;
   let password = req.body.password;
   let mobileNo = req.body.mobileNo;

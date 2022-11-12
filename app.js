@@ -13,7 +13,6 @@ const register=require('./routes/register');
 const login=require('./routes/login');
 const building=require('./routes/building');
 const tank=require('./routes/tank');
-const check=require('./routes/check');
 const sensor=require('./routes/sensor');
 
 app.get('/',(req,res)=>{
@@ -24,7 +23,6 @@ app.use('/register',register);
 app.use('/login',login);
 app.use('/building',building);
 app.use('/tank',tank);
-app.use('/check',check);
 app.use('/sensor',sensor);
 
 app.listen(3000,()=>{

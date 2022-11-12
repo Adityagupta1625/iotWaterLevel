@@ -1,35 +1,31 @@
 const router = require("express").Router();
 const bcryptjs = require("bcryptjs");
-const connection=require('../config/db');
+const connection = require("../config/db");
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
 
   let sql = `SELECT * FROM user WHERE officialEmail='${email}'`;
 
-  connection.query(sql, (err, result) => {
-    if (err) {
-      res.sendStatus(500);
-    } 
-    else {
-      if (result.length > 0) {
-        let user = result[0];
-        let passwordIsValid = bcryptjs.compareSync(password, user.password);
-        if (passwordIsValid) {
-          res.sendStatus(200);
-        } else {
-          res.sendStatus(401);
-        }
+  connection.query(sql, async (err, result) => {
+    if (err){
+      console.log(err);
+      res.status(500).send({ message: "Internal Server Error" });
+    }
+    if (result.length > 0) {
+      let match = await bcryptjs.compare(password, result[0].password);
+      if (match) {
+        res.send({ message: "Login Successful", data: result[0] });
       } else {
-        res.sendStatus(401);
+        res.send({ message: "Incorrect Password" });
       }
+    } else {
+      res.send({ message: "User not found" });
     }
   });
 
   connection.end();
-
-  res.sendStatus(200);
 });
 
 module.exports = router;
